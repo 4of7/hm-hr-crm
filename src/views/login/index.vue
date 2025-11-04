@@ -5,28 +5,29 @@
       <h1>登录</h1>
       <el-card shadow="never" class="login-card">
         <!--登录表单-->
-        <el-form>
-          <el-form-item>
+        <el-form ref="form" :model="loginForm" :rules="loginRules">
+          <el-form-item prop="mobile">
             <el-input
-              v-model="username"
-              placeholder="用户名"
+              v-model="loginForm.mobile"
+              placeholder="手机号"
               prefix-icon="el-icon-user"
             />
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
-              v-model="password"
+              v-model="loginForm.password"
+              type="password"
               placeholder="密码"
               prefix-icon="el-icon-user"
             />
           </el-form-item>
 
-          <el-form-item>
-            <el-checkbox>用户平台使用协议</el-checkbox>
+          <el-form-item prop="isAgree">
+            <el-checkbox v-model="loginForm.isAgree">用户平台使用协议</el-checkbox>
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary" style="width: 350px;">登录</el-button>
+            <el-button type="primary" style="width: 350px;" @click="login()">登录</el-button>
           </el-form-item>
         </el-form>
       </el-card>
@@ -34,8 +35,48 @@
   </div>
 </template>
 <script>
+// import { login } from '@/api/user'
+
 export default {
-  name: 'Login'
+  name: 'Login',
+  data() {
+    return {
+      loginForm: {
+        mobile: '',
+        password: '',
+        isAgree: false
+      },
+      loginRules: {
+        mobile: [
+          { required: true, message: '请输入手机号', trigger: 'blur' },
+          { pattern: /^1[3-9]\d{9}$/, message: '手机号格式不正确', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 16, message: '密码格式不正确', trigger: 'blur' }
+        ],
+        isAgree: [
+          { validator: (rule, value, callback) => {
+            if (!value) {
+              callback(new Error('请同意用户平台使用协议'))
+            } else {
+              callback()
+            }
+          }, trigger: 'change' }
+        ]
+      }
+    }
+  }, methods: {
+    login() {
+      this.$refs.form.validate(
+        (isOK) => {
+          if (isOK) {
+            alert('验证通过，可以提交表单')
+          }
+        }
+      )
+    }
+  }
 }
 </script>
 <style lang="scss">
