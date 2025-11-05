@@ -29,6 +29,9 @@
           <el-form-item>
             <el-button type="primary" style="width: 350px;" @click="login()">登录</el-button>
           </el-form-item>
+          <el-form-item>
+            <el-button type="primary" style="width: 350px;" @click="test()">测试</el-button>
+          </el-form-item>
         </el-form>
       </el-card>
     </div>
@@ -37,6 +40,8 @@
 <script>
 // import { login } from '@/api/user'
 // import axios from 'axios'
+import request from '@/utils/request'
+import { parseTime } from '@/utils/index'
 
 export default {
   name: 'Login',
@@ -79,6 +84,18 @@ export default {
             this.$store.dispatch('user/login', this.loginForm)
           }
         })
+    },
+    test() {
+      request({
+        url: '/sys/login',
+        method: 'post',
+        data: {
+          mobile: '13800000002',
+          password: 'it1HeiMa@' + parseTime(Date.now(), '{y}{m}{d}')
+        }
+      }).then(res => {
+        console.log(res)
+      })
     }
   }
 }
