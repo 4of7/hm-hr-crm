@@ -36,6 +36,7 @@
 </template>
 <script>
 // import { login } from '@/api/user'
+// import axios from 'axios'
 
 export default {
   name: 'Login',
@@ -66,15 +67,18 @@ export default {
         ]
       }
     }
-  }, methods: {
+  },
+  mounted() {
+    console.log(this.$store.getters.token)
+  },
+  methods: {
     login() {
       this.$refs.form.validate(
         (isOK) => {
           if (isOK) {
-            alert('验证通过，可以提交表单')
+            this.$store.dispatch('user/login', this.loginForm)
           }
-        }
-      )
+        })
     }
   }
 }
