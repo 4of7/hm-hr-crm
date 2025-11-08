@@ -9,7 +9,7 @@
           <el-form-item prop="mobile">
             <el-input
               v-model="loginForm.mobile"
-              placeholder="手机号"
+              placeholder="手机号:13800000002"
               prefix-icon="el-icon-user"
             />
           </el-form-item>
@@ -17,7 +17,7 @@
             <el-input
               v-model="loginForm.password"
               type="password"
-              placeholder="密码"
+              placeholder="密码:itHeiMa@20251108"
               prefix-icon="el-icon-user"
             />
           </el-form-item>
@@ -42,15 +42,16 @@
 // import axios from 'axios'
 import request from '@/utils/request'
 import { parseTime } from '@/utils/index'
+import { setToken } from '@/utils/auth'
 
 export default {
   name: 'Login',
   data() {
     return {
       loginForm: {
-        mobile: '',
-        password: '',
-        isAgree: false
+        mobile: '13800000002',
+        password: 'itHeiMa@20251108',
+        isAgree: true
       },
       loginRules: {
         mobile: [
@@ -79,9 +80,10 @@ export default {
   methods: {
     login() {
       this.$refs.form.validate(
-        (isOK) => {
+        async(isOK) => {
           if (isOK) {
-            this.$store.dispatch('user/login', this.loginForm)
+            await this.$store.dispatch('user/login', this.loginForm)
+            this.$router.push('/')
           }
         })
     },
@@ -91,9 +93,10 @@ export default {
         method: 'post',
         data: {
           mobile: '13800000002',
-          password: 'it1HeiMa@' + parseTime(Date.now(), '{y}{m}{d}')
+          password: 'itHeiMa@' + parseTime(Date.now(), '{y}{m}{d}')
         }
       }).then(res => {
+        setToken(res)
         console.log(res)
       })
     }
