@@ -3,7 +3,32 @@ import { login, getUserInfo } from '@/api/user'
 
 const state = {
   token: getToken(),
-  userInfo: {}
+  userInfo: {} || {
+    'roles': {
+      'menus': [
+        'department',
+        'role',
+        'employee',
+        'permission',
+        'approval',
+        'attendance',
+        'salary',
+        'social'
+      ],
+      'points': [
+        'add-employee'
+      ]
+    },
+    'companyId': '1',
+    'company': '传智播客',
+    'userId': 1,
+    'mobile': '13800000002',
+    'username': '管理员',
+    'staffPhoto': 'https://heimahr.itheima.net/defaultHead.png',
+    'departmentName': '总裁办',
+    'departmentId': 1,
+    'base64Img': ''
+  }
 }
 const mutations = {
   setToken(state, token) {
