@@ -50,7 +50,7 @@ export default {
     return {
       loginForm: {
         mobile: '13800000002',
-        password: 'itHeiMa@20251108',
+        password: 'itHeiMa@20251109',
         isAgree: true
       },
       loginRules: {
@@ -75,7 +75,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$store.getters.token)
+    console.log('token:', this.$store.getters.token)
   },
   methods: {
     login() {
