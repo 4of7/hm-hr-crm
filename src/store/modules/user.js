@@ -55,7 +55,6 @@ const actions = {
   async getUserInfo(context) {
     const result = await getUserInfo()
     console.log('接口返回数据:', result)
-
     context.commit('setUserInfo', result)
   }
 }

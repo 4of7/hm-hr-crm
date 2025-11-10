@@ -7,6 +7,7 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
+          <span class="username">{{ name?.charAt(0) }}</span>
           <img :src="avatar" class="user-avatar">
           <span class="name">{{ name }}</span>
           <i class="el-icon-setting" />
@@ -136,6 +137,17 @@ export default {
 
         .el-icon-setting {
           font-size: 20px;
+        }
+
+        .username{
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          background-color: pink;
+          border-radius: 50%;
+          color: #fff;
+          margin-right: 10px;
         }
       }
     }

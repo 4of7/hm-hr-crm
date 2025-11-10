@@ -50,7 +50,7 @@ export default {
     return {
       loginForm: {
         mobile: '13800000002',
-        password: 'itHeiMa@20251109',
+        password: 'itHeiMa@20251110',
         isAgree: true
       },
       loginRules: {
