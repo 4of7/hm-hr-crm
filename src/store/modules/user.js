@@ -56,6 +56,11 @@ const actions = {
     const result = await getUserInfo()
     console.log('接口返回数据:', result)
     context.commit('setUserInfo', result)
+  },
+  // 退出登录
+  logout(context) {
+    context.commit('removeToken')
+    context.commit('setUserInfo', {})
   }
 }
 export default {

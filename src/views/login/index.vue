@@ -50,7 +50,7 @@ export default {
     return {
       loginForm: {
         mobile: '13800000002',
-        password: 'itHeiMa@20251110',
+        password: 'itHeiMa@' + parseTime(Date.now(), '{y}{m}{d}'),
         isAgree: true
       },
       loginRules: {

@@ -9,7 +9,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import store from '@/store'
+// import store from '@/store'
+import request from '@/utils/request'
 
 export default {
   name: 'Dashboard',
@@ -19,9 +20,30 @@ export default {
     ])
   }, methods: {
     test() {
-      // console.log('userId:', store.getters.userId)
-      console.log(store.state.user.userInfo)
+      request({
+        url: '/sys/user',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc2MjkxNDQ5OSwiZXhwIjoxNzYyOTM2MDk5fQ.SgWzC3Pq08i8R_yJyTzWfNuN-SeCorxvp6WqIeb8Axs'
+        },
+        data: {
+          username: '张三',
+          mobile: '16619742416',
+          formOfEmployment: 1,
+          workNumber: 'A001',
+          departmentId: 2,
+          timeOfEntry: '2025-11-12T00:00:00Z',
+          correctionTime: '2025-12-12T00:00:00Z',
+          staffPhoto: ''
+        }
+      }).then(res => {
+        console.log('✅ 接口返回：', res)
+      }).catch(err => {
+        console.error('❌ 请求失败：', err)
+      })
     }
+
   }
 }
 </script>
