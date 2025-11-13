@@ -97,7 +97,7 @@ export default {
         }
       }).then(res => {
         setToken(res)
-        console.log(res)
+        // console.log(res)
       })
     }
   }

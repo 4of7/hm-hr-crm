@@ -46,7 +46,7 @@ const mutations = {
 }
 const actions = {
   async login(context, data) {
-    console.log(data)
+    // console.log(data)
     // 调用登录接口
     const token = await login(data)
     // 返回token
@@ -54,7 +54,7 @@ const actions = {
   },
   async getUserInfo(context) {
     const result = await getUserInfo()
-    console.log('接口返回数据:', result)
+    // console.log('接口返回数据:', result)
     context.commit('setUserInfo', result)
   },
   // 退出登录
